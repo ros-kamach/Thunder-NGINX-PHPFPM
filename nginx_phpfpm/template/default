@@ -3,7 +3,7 @@ server {
 
     # this path MUST be exactly as docker-compose.fpm.volumes,
     # even if it doesn't exists in this dock.
-    root /var/www/html;
+    root /var/www/thunder/docroot;
     index index.php index.html index.html;
     error_log /var/log/nginx/drupal_error.log;
     access_log /var/log/nginx/drupal_access.log;
