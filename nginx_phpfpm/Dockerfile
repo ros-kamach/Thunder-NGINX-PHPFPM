@@ -1,10 +1,12 @@
 FROM roskamach/ubuntu_baseimage
-
+  
 RUN apt-get update -y && \
     apt-get install -y \
-    curl && \
+    curl \
+    git \
+    unzip && \
     ###
-    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
+    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 WORKDIR /var/www/
 RUN curl -sS https://getcomposer.org/installer -o composer-setup.php && \
@@ -13,7 +15,7 @@ RUN curl -sS https://getcomposer.org/installer -o composer-setup.php && \
     cd thunder/ && rm /etc/nginx/sites-available/default && \
     composer install --no-progress --profile --prefer-dist --verbose --no-interaction && \
     chown -R www-data:www-data /var/www/thunder/ && chmod -R 755 /var/www/thunder
-  
+
 
 COPY ./template/default /etc/nginx/sites-available/default
 
