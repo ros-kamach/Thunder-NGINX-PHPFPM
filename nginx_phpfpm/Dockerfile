@@ -1,4 +1,4 @@
-FROM roskamach:ubuntu_baseimage
+FROM roskamach/ubuntu_baseimage
 
 RUN apt-get update -y && \
     apt-get install -y \

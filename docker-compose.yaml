@@ -1,5 +1,5 @@
 nginx_phpfpm:
-    image: roskamach/ubuntu_baseimage
+    build: ./nginx_phpfpm
     ports:
         - "80:80"
     links:
