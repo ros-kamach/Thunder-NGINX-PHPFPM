@@ -1,0 +1,33 @@
+nginx_phpfpm:
+    image: roskamach/ubuntu_baseimage
+    ports:
+        - "80:80"
+    links:
+        - db_mysql
+    volumes:
+        - ./nginx_phpfpm/template/default:/etc/nginx/sites-available/default
+        - ./nginx_phpfpm/logs/nginx-error.log:/var/log/nginx/error.log
+        - ./nginx_phpfpm/logs/nginx-access.log:/var/log/nginx/access.log
+        - ./nginx_phpfpm/logs/drupal-error.log:/var/log/nginx/drupal_error.log
+        - ./nginx_phpfpm/logs/drupal-access.log:/var/log/nginx/drupal_access.log
+
+db_mysql:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    env_file:
+      - .env
+    ports:
+        - "3306:3306"
+    volumes:
+        - ./database:/var/lib/mysql
+
+phpmyadmin: 
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+        - 8080:80
+    links:
+        - db_mysql
+    environment:
+      PMA_ARBITRARY: 1
