@@ -1,6 +1,6 @@
 #**Branch "[ubuntu_image](https://github.com/ros-kamach/Thunder-NGINX-PHPFPM/tree/ubuntu_image)"**
    - Use image "roskamach/ubuntu_thunder" (Ubuntu+Nhinx+PHPFPM+Composer+Thunder)
-   - Use image "mysql:5.7.22"
+   - Use image "mysql:8.0.16"
    - Use image "phpmyadmin"
    
 #**Branch "[ubuntu_build](https://github.com/ros-kamach/Thunder-NGINX-PHPFPM/tree/ubuntu_build)"**
