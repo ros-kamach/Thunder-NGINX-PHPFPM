@@ -9,5 +9,6 @@
    - Use image "mysql:5.7.22"
    - Use image "phpmyadmin"
    
+[I'm an inline-style link](https://www.google.com)
 
 ![alt text](https://www.drupal.org/files/Thunder_WBM_20160126.png)
