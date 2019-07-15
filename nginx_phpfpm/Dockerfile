@@ -1,23 +1,32 @@
-FROM roskamach/ubuntu_baseimage
+FROM roskamach/centos_baseimage
   
-RUN apt-get update -y && \
-    apt-get install -y \
+MAINTAINER Rostylav Kamach <ros.kamach@gmail.com>
+
+RUN yum update -y && \
+    yum install -y \
     curl \
     git \
     unzip && \
-    ###
-    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    ### 
+    yum clean all && \
+    rm -rf /var/cache/yum
 
 WORKDIR /var/www/
-RUN curl -sS https://getcomposer.org/installer -o composer-setup.php && \
-    php composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
-    composer create-project burdamagazinorg/thunder-project thunder --verbose --no-interaction && \
-    cd thunder/ && rm /etc/nginx/sites-available/default && \
-    composer install --no-progress --profile --prefer-dist --verbose --no-interaction && \
-    chown -R www-data:www-data /var/www/thunder/ && chmod -R 755 /var/www/thunder
+RUN curl -sS https://getcomposer.org/installer | php && \
+    mv composer.phar /usr/local/bin/composer && \
+    chmod +x /usr/local/bin/composer
+   #curl -sS https://getcomposer.org/installer -o composer-setup.php && \
+   # php composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
+WORKDIR /var/www/
+RUN composer create-project thunder/thunder-project thunder --no-interaction --no-install
+    #composer create-project burdamagazinorg/thunder-project thunder --verbose --no-interaction && \
+WORKDIR /var/www/thunder
+RUN composer install --no-progress --profile --prefer-dist -vvv --no-interaction
+WORKDIR /var/www/thunder
+RUN composer drupal:scaffold && \
+    chown -R nginx:nginx /var/www/thunder && chmod -R 755 /var/www/thunder
 
-
-COPY ./template/default /etc/nginx/sites-available/default
+COPY ./template/default /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 ENTRYPOINT [ "script.sh" ]
