@@ -1,0 +1,4 @@
+[opcache]
+zend_extension=/usr/lib64/php/modules/opcache.so
+;Determines if Zend OPCache in enabled
+opcache.enable=1

@@ -1,30 +1,26 @@
 server {
+    server_name localhost;
     listen 80;
-    listen [::]:80;
-    root /var/www/thunder/docroot;
-    index  index.php index.html index.htm;
-    server_name  localhost;
+    root /usr/share/nginx/html;
+    access_log /var/log/nginx/drupal-access.log;
+    error_log /var/log/nginx/drupal-error.log;
+    index index.php;
 
     location / {
-    try_files $uri /index.php?$query_string;        
+        try_files  $uri $uri/ /index.php?$args;
     }
 
-    location @rewrite {
-               rewrite ^/(.*)$ /index.php?q=$1;
-        }
-
-    location ~ [^/]\.php(/|$) {
-         include snippets/fastcgi-php.conf;
-         fastcgi_pass 127.0.0.1:9000;
-         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-         include fastcgi_params;
+    location ~* \.(jpg|jpeg|gif|css|png|js|ico|html)$ {
+        expires max;
     }
-
-    location ~ ^/sites/.*/files/styles/ {
-               try_files $uri @rewrite;
-        }
-
-    location ~ ^(/[a-z\-]+)?/system/files/ {
-        try_files $uri /index.php?$query_string;
-        }
+    location ~ /\.ht {
+        deny  all;
+    }
+    location ~ \.php {
+        try_files $uri = 404;
+        fastcgi_pass 127.0.0.1:9000;
+        fastcgi_index index.php;
+        include /etc/nginx/fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
 }
