@@ -14,7 +14,7 @@
      
    Image Size=671MB
    
-#**Branch "[alpine_build](https://github.com/ros-kamach/drupal_nginx_phpfpm/tree/alpine_build)"**
+#**Branch "[alpine_build](https://github.com/ros-kamach/thunder_nginx_phpfpm/tree/alpine_build)"**
    - Build image based on  "roskamach/alpine_baseimage" (Alpine+Nhinx+PHPFPM Size=61MB)
      - install Composer
      - install PHP requirements for Thunder CMS
