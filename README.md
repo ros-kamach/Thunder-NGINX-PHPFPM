@@ -3,6 +3,8 @@
    - Build image based on "roskamach/ubuntu_baseimage" installed Composer&Thunder 
    - Use image "mysql:5.7.22"
    - Use image "phpmyadmin"
+     
+   Image Size=548MB
    
 #**Branch "[centos_build](https://github.com/ros-kamach/thunder_nginx_phpfpm/tree/centos_build)"**
    - Use image "roskamach/ubuntu_baseimage" (Centos+Nhinx+PHPFPM)
