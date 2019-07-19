@@ -4,14 +4,15 @@
 
 <img src="https://cdn.freebiesupply.com/logos/large/2x/ubuntu-4-logo-png-transparent.png" alt="Thunder" width="4%"/> **"[ubuntu_build](https://github.com/ros-kamach/thunder_nginx_phpfpm/tree/ubuntu_build)"**
 ``` 
-- Use image "roskamach/ubuntu_baseimage" (Ubuntu+Nhinx+PHPFPM Size=259MB)
+- Build image based on "roskamach/ubuntu_baseimage" (Ubuntu+Nhinx+PHPFPM Size=259MB)
      - install Composer
      - install PHP requirements for Thunder CMS
      - install Thunder CMS
+     
+  Image Size=548MB
+     
 - Use image "mysql:5.7.22"
 - Use image "phpmyadmin"
-   
-Image Size=548MB
 ``` 
 
 #
