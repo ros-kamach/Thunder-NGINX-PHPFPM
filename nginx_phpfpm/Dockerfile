@@ -52,6 +52,8 @@ RUN \
     composer clear-cache > /dev/null 2>&1
 
 COPY ./template/default /etc/nginx/conf.d/default.conf
-
+HEALTHCHECK --interval=5s \
+            --timeout=5s \
+            CMD curl -f http://127.0.0.1:80 || exit
 EXPOSE 80
 ENTRYPOINT [ "/script.sh" ]
