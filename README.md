@@ -35,13 +35,12 @@
 <img src="https://cdn.shortpixel.ai/client/q_glossy,ret_img,w_200/https://www.worksonarm.com/wp-content/uploads/2017/09/Alpine-Linux-Logo.png" alt="Thunder" width="4%"/> **"[alpine_build](https://github.com/ros-kamach/thunder_nginx_phpfpm/tree/alpine_build)"**
 
 ```
-- Build image based on  "roskamach/alpine_baseimage" (Alpine+Nhinx+PHPFPM Size=61MB)
-     - install Composer
-     - install PHP requirements for Thunder CMS
-     - install Thunder CMS
-     
-  Image Size=292MB
+- Use image  "roskamach/alpine_thunder" (Alpine+Nhinx+PHPFPM+ThunderCMS Size=292MB)
+     - mount volume with Nginx configuration
+     - mount volume with global Nginx logs and site logs
     
-   - Use image "mysql:5.7.22"
-   - Use image "phpmyadmin
+- Use image "mysql:5.7.22"
+     - mount volume with Database
+
+- Use image "phpmyadmin"
 ``` 
