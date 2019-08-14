@@ -35,11 +35,11 @@ RUN \
     php7.2-pdo_mysql \
     php7.2-curl > /dev/null 2>&1 && \
     ###
-    echo "Unpacking Drupal Site" && echo "###" && \
+    echo "Unpacking Thunder CMS Site" && echo "###" && \
     unzip thunder-8.x-2.47-core.zip > /dev/null 2>&1 && \
     rm -rf html thunder-8.x-2.47/.git && mv thunder-8.x-2.47/ html && rm thunder-8.x-2.47-core.zip && cd html/ && \
     ###
-    echo "Install Drupal" && echo "###" && \
+    echo "Install Thunder CMS" && echo "###" && \
     curl -sS https://getcomposer.org/installer | \
     php -- --install-dir=/usr/bin/ --filename=composer > /dev/null 2>&1 && \
     composer install --no-progress --profile --prefer-dist > /dev/null 2>&1 && \
