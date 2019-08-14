@@ -47,7 +47,7 @@
 ``` 
 #
 
-<img src="https://cdn.shortpixel.ai/client/q_glossy,ret_img,w_200/https://www.worksonarm.com/wp-content/uploads/2017/09/Alpine-Linux-Logo.png" alt="Thunder" width="4%"/> **"[alpine_build](https://github.com/ros-kamach/thunder_nginx_phpfpm/tree/alpine_image)"**
+<img src="https://cdn.shortpixel.ai/client/q_glossy,ret_img,w_200/https://www.worksonarm.com/wp-content/uploads/2017/09/Alpine-Linux-Logo.png" alt="Thunder" width="4%"/> **"[alpine_image](https://github.com/ros-kamach/thunder_nginx_phpfpm/tree/alpine_image)"**
 
 ```
 - Use image  "roskamach/alpine_thunder" (Alpine+Nhinx+PHPFPM+ThunderCMS Size=292MB)
