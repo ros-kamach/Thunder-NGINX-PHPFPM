@@ -54,4 +54,7 @@ RUN \
 COPY ./template/default /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
+HEALTHCHECK --interval=5s \
+            --timeout=5s \
+            CMD curl -f http://127.0.0.1:80/core/install.php || exit
 ENTRYPOINT [ "/script.sh" ]
