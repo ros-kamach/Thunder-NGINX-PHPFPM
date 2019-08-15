@@ -1,5 +1,7 @@
 nginx_phpfpm:
-    image: roskamach/alpine_thunder:lstest
+    image: roskamach/alpine_thunder:"${thunder_build_Num}"
+    env_file:
+      - .env_thunder_build_number
     ports:
         - "80:80"
     links:
