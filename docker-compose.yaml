@@ -1,5 +1,5 @@
 nginx_phpfpm:
-    image: roskamach/alpine_thunder:latest
+    image: roskamach/alpine_thunder:$1
     ports:
         - "80:80"
     links:
