@@ -1,4 +1,4 @@
-FROM roskamach/alpine_baseimage
+FROM roskamach/alpine_baseimage:latest
   
 MAINTAINER Rostylav Kamach <ros.kamach@gmail.com>
 
