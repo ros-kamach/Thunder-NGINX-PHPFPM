@@ -47,7 +47,7 @@ RUN \
     cat ../opcache >> /etc/php/7.2/php.ini && rm ../opcache && \
     ###
     echo "Clean cache" && echo "###" && \
-    apk del curl git unzip > /dev/null 2>&1 && \
+    apk del git unzip > /dev/null 2>&1 && \
     rm -rf /var/cache/apk/* > /dev/null 2>&1 && \
     composer clear-cache > /dev/null 2>&1
 
