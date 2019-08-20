@@ -31,3 +31,4 @@ phpmyadmin:
         - db_mysql
     environment:
       PMA_ARBITRARY: 1
+2
