@@ -2,12 +2,12 @@ FROM roskamach/alpine_baseimage:latest
   
 MAINTAINER Rostylav Kamach <ros.kamach@gmail.com>
 
-COPY ./thunder-8.x-2.47-core.zip /usr/share/nginx/
 COPY ./template/opcache /usr/share/nginx/
 COPY ./template/10-opcache.ini /etc/php.d/10-opcache.in
 
 WORKDIR /usr/share/nginx/
 RUN \
+    curl -L https://ftp.drupal.org/files/projects/thunder-8.x-2.47-core.zip -o /usr/share/nginx/thunder-8.x-2.47-core.zip
     echo "Update pachages list" && echo "###" && \
     apk update > /dev/null 2>&1 && apk upgrade > /dev/null 2>&1 && \
     ###
