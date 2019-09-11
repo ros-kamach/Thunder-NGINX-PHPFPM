@@ -34,6 +34,7 @@ RUN \
     php7.2-mysqlnd \
     php7.2-pdo_mysql \
     php7.2-curl > /dev/null 2>&1 && \
+    sed -i "s|;*max_execution_time =.*|max_execution_time = 120|i" /etc/php/7.2/php.ini && \
     ###
     echo "Unpacking Thunder CMS Site" && echo "###" && \
     unzip thunder-8.x-2.47-core.zip > /dev/null 2>&1 && \
