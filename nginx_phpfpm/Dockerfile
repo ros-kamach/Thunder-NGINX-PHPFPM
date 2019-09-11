@@ -7,7 +7,7 @@ COPY ./template/10-opcache.ini /etc/php.d/10-opcache.in
 
 WORKDIR /usr/share/nginx/
 RUN \
-    curl -L https://ftp.drupal.org/files/projects/thunder-8.x-2.47-core.zip -o /usr/share/nginx/thunder-8.x-2.47-core.zip && \
+    curl -L https://ftp.drupal.org/files/projects/thunder-8.x-2.49-core.zip -o /usr/share/nginx/thunder-8.x-2.49-core.zip && \
     echo "Update pachages list" && echo "###" && \
     apk update > /dev/null 2>&1 && apk upgrade > /dev/null 2>&1 && \
     ###
@@ -34,11 +34,10 @@ RUN \
     php7.2-mysqlnd \
     php7.2-pdo_mysql \
     php7.2-curl > /dev/null 2>&1 && \
-    sed -i "s|;*max_execution_time =.*|max_execution_time = 120|i" /etc/php/7.2/php.ini && \
     ###
     echo "Unpacking Thunder CMS Site" && echo "###" && \
-    unzip thunder-8.x-2.47-core.zip > /dev/null 2>&1 && \
-    rm -rf html thunder-8.x-2.47/.git && mv thunder-8.x-2.47/ html && rm thunder-8.x-2.47-core.zip && cd html/ && \
+    unzip thunder-8.x-2.49-core.zip > /dev/null 2>&1 && \
+    rm -rf html thunder-8.x-2.49/.git && mv thunder-8.x-2.49/ html && rm thunder-8.x-2.49-core.zip && cd html/ && \
     ###
     echo "Install Thunder CMS" && echo "###" && \
     curl -sS https://getcomposer.org/installer | \
