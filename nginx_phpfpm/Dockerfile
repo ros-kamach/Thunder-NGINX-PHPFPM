@@ -2,7 +2,7 @@ FROM roskamach/alpine_baseimage:latest
   
 MAINTAINER Rostylav Kamach <ros.kamach@gmail.com>
 
-COPY ./template/settings.php /usr/share/nginx/
+COPY ./template/settings.php /usr/share/nginx/html/sites/default/
 COPY ./template/db_connect.sh /usr/share/nginx/
 COPY ./template/opcache /usr/share/nginx/
 COPY ./template/10-opcache.ini /etc/php.d/
