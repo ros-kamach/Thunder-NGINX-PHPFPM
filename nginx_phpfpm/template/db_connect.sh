@@ -18,9 +18,9 @@ if [[ "${ENV}" == "yes" ]]
     else
         echo  Skip connection to Data_Base. Enviroment "$CONNECT_TO_DB" is  '' ${ENV}'', must be "yes"
 fi
-echo ${PHP_MEMORY_LIMIT}
-echo ${MYSQL_DATABASE}
-echo ${MYSQL_PASSWORD}
-echo ${MYSQL_PASSWORD}
-echo ${MYSQL_PORT}
-echo ${MYSQL_HOST}
+echo PHP_MEMORY_LIMIT=${PHP_MEMORY_LIMIT}
+echo MYSQL_DATABASE=${MYSQL_DATABASE}
+echo MYSQL_PASSWORD=${MYSQL_PASSWORD}
+echo MYSQL_PASSWORD=${MYSQL_PASSWORD}
+echo MYSQL_PORT=${MYSQL_PORT}
+echo MYSQL_HOST=${MYSQL_HOST}
