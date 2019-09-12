@@ -59,6 +59,7 @@ RUN \
     ${MYSQL_PASSWORD} \
     ${MYSQL_PORT} \
     ${MYSQL_HOST} $$ \
+    rm -f ./db_connect.sh ./settings.php
     ###
     echo "Clean cache" && echo "###" && \
     apk del git unzip > /dev/null 2>&1 && \
