@@ -37,9 +37,6 @@ RUN \
     php7.2-pdo_mysql \
     php7.2-curl > /dev/null 2>&1 && \
     ###
-    ls && \
-    pwd && \
-    ###
     echo "Unpacking Thunder CMS Site" && echo "###" && \
     unzip thunder-8.x-2.49-core.zip > /dev/null 2>&1 && \
     rm -rf html thunder-8.x-2.49/.git && mv thunder-8.x-2.49/ html && rm thunder-8.x-2.49-core.zip && cd html/ && \
@@ -50,6 +47,9 @@ RUN \
     composer install --no-progress --profile --prefer-dist > /dev/null 2>&1 && \
     chown -R nginx:nginx /usr/share/nginx/html && \
     cat ../opcache >> /etc/php/7.2/php.ini && rm ../opcache && \
+    ###
+    ls && \
+    pwd && \
     ###
     bash ./db_connect.sh \
     ${CONNECT_TO_DB} \
