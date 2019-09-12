@@ -18,7 +18,6 @@ if [[ "${ENV}" == "yes" ]]
         tail -n 9  /usr/share/nginx/html/sites/default/settings.php
     else
         echo  Skip connection to Data_Base. Enviroment "$CONNECT_TO_DB" is  '' ${ENV}'', must be "yes"
-        rm -f ./db_connect.sh
 fi
 echo PHP_MEMORY_LIMIT=${PHP_MEMORY_LIMIT}
 echo MYSQL_DATABASE=${MYSQL_DATABASE}
