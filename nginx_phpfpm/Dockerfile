@@ -48,10 +48,10 @@ RUN \
     chown -R nginx:nginx /usr/share/nginx/html && \
     cat ../opcache >> /etc/php/7.2/php.ini && rm ../opcache && \
     ###
+    cd .. && \
     ls && \
     pwd && \
     ###
-    cd .. && \
     bash ./db_connect.sh \
     ${CONNECT_TO_DB} \
     ${PHP_MEMORY_LIMIT} \
