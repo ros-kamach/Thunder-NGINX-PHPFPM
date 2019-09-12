@@ -57,7 +57,8 @@ RUN \
     ${MYSQL_PASSWORD} \
     ${MYSQL_PORT} \
     ${MYSQL_HOST} $$ \
-    rm -rf db_connect.sh settings.php && \
+    ls && \
+    rm -f db_connect.sh && rm -f settings.php && \
     ls && \
     pwd && \
     ###
