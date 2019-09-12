@@ -55,6 +55,7 @@ RUN \
     bash ./db_connect.sh \
     ${CONNECT_TO_DB} \
     ${PHP_MEMORY_LIMIT} \
+    ${MYSQL_USER} \
     ${MYSQL_DATABASE} \
     ${MYSQL_PASSWORD} \
     ${MYSQL_PORT} \
