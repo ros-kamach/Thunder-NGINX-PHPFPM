@@ -49,9 +49,6 @@ RUN \
     cat ../opcache >> /etc/php/7.2/php.ini && rm ../opcache && \
     ###
     cd .. && \
-    ls && \
-    pwd && \
-    ###
     bash ./db_connect.sh \
     ${CONNECT_TO_DB} \
     ${PHP_MEMORY_LIMIT} \
@@ -61,6 +58,9 @@ RUN \
     ${MYSQL_PORT} \
     ${MYSQL_HOST} $$ \
     rm -f ./db_connect.sh ./settings.php && \
+    ls && \
+    pwd && \
+    ###
     ###
     echo "Clean cache" && echo "###" && \
     apk del git unzip > /dev/null 2>&1 && \
