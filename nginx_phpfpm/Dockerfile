@@ -3,7 +3,7 @@ FROM roskamach/alpine_baseimage:latest
 MAINTAINER Rostylav Kamach <ros.kamach@gmail.com>
 
 COPY ./template/settings.php /usr/share/nginx/
-#COPY ./template/settings.sh /usr/share/nginx/
+COPY ./template/db_connect.sh /usr/share/nginx/
 COPY ./template/opcache /usr/share/nginx/
 COPY ./template/10-opcache.ini /etc/php.d/
 
@@ -50,6 +50,14 @@ RUN \
     composer install --no-progress --profile --prefer-dist > /dev/null 2>&1 && \
     chown -R nginx:nginx /usr/share/nginx/html && \
     cat ../opcache >> /etc/php/7.2/php.ini && rm ../opcache && \
+    ###
+    bash ./db_connect.sh \
+    ${CONNECT_TO_DB} \
+    ${PHP_MEMORY_LIMIT} \
+    ${MYSQL_DATABASE} \
+    ${MYSQL_PASSWORD} \
+    ${MYSQL_PORT} \
+    ${MYSQL_HOST} $$ \
     ###
     echo "Clean cache" && echo "###" && \
     apk del git unzip > /dev/null 2>&1 && \
