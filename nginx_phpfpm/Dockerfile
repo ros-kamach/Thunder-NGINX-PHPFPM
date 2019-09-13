@@ -5,7 +5,7 @@ MAINTAINER Rostylav Kamach <ros.kamach@gmail.com>
 COPY ./template/db_connect.sh /
 COPY ./template/settings.php /usr/share/nginx/
 COPY ./template/opcache /usr/share/nginx/
-#COPY ./template/10-opcache.ini /etc/php.d/
+COPY ./template/10-opcache.ini /etc/php.d/10-opcache.in
 
 WORKDIR /usr/share/nginx/
 RUN \
