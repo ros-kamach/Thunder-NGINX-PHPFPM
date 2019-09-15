@@ -2,7 +2,7 @@ FROM roskamach/alpine_baseimage:latest
 
 MAINTAINER Rostylav Kamach <ros.kamach@gmail.com>
 
-COPY ./template/db_connect.sh /
+COPY ./template/drush.sh /
 COPY ./template/settings.php /usr/share/nginx/
 COPY ./template/opcache /usr/share/nginx/
 COPY ./template/10-opcache.ini /etc/php.d/10-opcache.ini
@@ -51,7 +51,8 @@ RUN \
     chown -R nginx:nginx /usr/share/nginx/html && \
     cat ../opcache >> /etc/php/7.2/php.ini && rm ../opcache && \
     ###
-    bash /db_connect.sh && \
+    echo "Drush Install and connect (On "yes" veriable)" && echo "###" && \
+    bash /drush.sh && \
     ###
     echo "Clean cache" && echo "###" && \
     apk del unzip > /dev/null 2>&1 && \
