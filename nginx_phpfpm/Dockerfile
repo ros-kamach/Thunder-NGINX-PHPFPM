@@ -3,7 +3,6 @@ FROM roskamach/alpine_baseimage:latest
 MAINTAINER Rostylav Kamach <ros.kamach@gmail.com>
 
 COPY ./template/drush.sh /
-COPY ./template/settings.php /usr/share/nginx/
 COPY ./template/opcache /usr/share/nginx/
 COPY ./template/10-opcache.ini /etc/php.d/10-opcache.ini
 
