@@ -37,6 +37,8 @@ RUN \
     php7.2-pdo_mysql \
     php7.2-curl > /dev/null 2>&1 && \
     ###
+    echo "Chainge PHP param" && echo "###" && \
+    echo ${PHP_MEMORY_LIMIT} && \
     sed -i "s|;*memory_limit =.*|memory_limit = ${PHP_MEMORY_LIMIT}|i" /etc/php/7.2/php.ini && \
     ###
     echo "Unpacking Thunder CMS Site" && echo "###" && \
