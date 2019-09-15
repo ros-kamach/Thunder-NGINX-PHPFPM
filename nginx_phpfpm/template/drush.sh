@@ -22,14 +22,6 @@ if [[ "${CONNECT_TO_DB}" == "yes" ]]
         --db-url=mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@${MYSQL_HOST}/${MYSQL_DATABASE} \
         --site-name=Example --account-name=admin --account-pass=admin --sites-subdir=default
         chown -R nginx:nginx /usr/share/nginx/html/sites/default
-        #mv /usr/share/nginx/settings.php /usr/share/nginx/html/sites/default/
-        #sed -i "s|;*memory_limit =.*|memory_limit = ${PHP_MEMORY_LIMIT}|i" /etc/php/7.2/php.ini
-        #sed -i "s|MYSQL_DATABASE|'database' => '${MYSQL_DATABASE}',|i" /usr/share/nginx/html/sites/default/settings.php
-        #sed -i "s|MYSQL_USER|'username' => '${MYSQL_USER}',|i" /usr/share/nginx/html/sites/default/settings.php
-        #sed -i "s|MYSQL_PASSWORD|'password' => '${MYSQL_PASSWORD}',|i" /usr/share/nginx/html/sites/default/settings.php
-        #sed -i "s|MYSQL_PORT|'host' => '${MYSQL_PORT}',|i" /usr/share/nginx/html/sites/default/settings.php
-        #sed -i "s|MYSQL_HOST|'port' => '${MYSQL_HOST}',|i" /usr/share/nginx/html/sites/default/settings.php
-        #tail -n 9  /usr/share/nginx/html/sites/default/settings.php
     else
         echo "###"
         echo  Skip connection to Data_Base. Enviroment "CONNECT_TO_DB" is  $CONNECT_TO_DB, must be "yes"
