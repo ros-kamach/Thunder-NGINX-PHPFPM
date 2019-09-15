@@ -17,6 +17,19 @@ if [[ "${CONNECT_TO_DB}" == "yes" ]]
         rm -f settings.php
         echo "###"
 fi
+
+if [[ "${DRUSH_INSTALL}" == "yes" ]]
+    then
+        cd /usr/share/nginx/html/
+        composer require drush/drush:master
+    else
+        echo "###"
+        echo  Skip DRUSH installation. Enviroment "DRUSH_INSTALL" is  $DRUSH_INSTALL, must be "yes"
+        echo "###"
+fi
+
+
+echo PHP_MEMORY_LIMIT=${PHP_MEMORY_LIMIT}
 echo MYSQL_DATABASE=${MYSQL_DATABASE}
 echo MYSQL_USER=${MYSQL_USER}
 echo MYSQL_PASSWORD=${MYSQL_PASSWORD}
