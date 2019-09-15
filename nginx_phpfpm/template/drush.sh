@@ -16,7 +16,7 @@ fi
 if [[ "${CONNECT_TO_DB}" == "yes" ]]
     then
         echo "Install site by DRUSH"
-        mv /default.settings.php /usr/share/nginx/html/sites/default/default.settings.php
+        mv /usr/share/nginx/default.settings.php /usr/share/nginx/html/sites/default/default.settings.php
         cd /usr/share/nginx/html/
         vendor/bin/drush -y si \
         --db-url=mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@${MYSQL_HOST}/${MYSQL_DATABASE} \
