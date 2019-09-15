@@ -16,10 +16,12 @@ fi
 if [[ "${CONNECT_TO_DB}" == "yes" ]]
     then
         echo "Install site by DRUSH"
+        mv /default.settings.php /usr/share/nginx/html/sites/default/default.settings.php
         cd /usr/share/nginx/html/
         vendor/bin/drush -y si \
         --db-url=mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@${MYSQL_HOST}/${MYSQL_DATABASE} \
         --site-name=Example --account-name=admin --account-pass=admin --sites-subdir=default
+        chown -R nginx:nginx /usr/share/nginx/html/sites/default
         #mv /usr/share/nginx/settings.php /usr/share/nginx/html/sites/default/
         #sed -i "s|;*memory_limit =.*|memory_limit = ${PHP_MEMORY_LIMIT}|i" /etc/php/7.2/php.ini
         #sed -i "s|MYSQL_DATABASE|'database' => '${MYSQL_DATABASE}',|i" /usr/share/nginx/html/sites/default/settings.php
