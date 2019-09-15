@@ -1,7 +1,5 @@
 nginx_phpfpm:
     build: ./nginx_phpfpm
-    env_file:
-      - .env    
     ports:
         - "80:80"
     links:
