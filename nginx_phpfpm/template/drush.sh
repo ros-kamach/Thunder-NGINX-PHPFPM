@@ -13,7 +13,7 @@ if [[ "${DRUSH_INSTALL}" == "yes" ]]
 fi
 
 # Add Enviroment to Progect "CONNECT_TO_DB=yes" to Install Site by DRUSH
-if [[ "${CONNECT_TO_DB}" == "yes" ]]
+if [[ "${SITE_INSTALL}" == "yes" ]]
     then
         echo "Install site by DRUSH"
         mv /usr/share/nginx/default.settings.php /usr/share/nginx/html/sites/default/default.settings.php
