@@ -45,6 +45,8 @@ RUN \
     unzip thunder-8.x-2.49-core.zip > /dev/null 2>&1 && \
     rm -rf html thunder-8.x-2.49/.git && mv thunder-8.x-2.49/ html && rm thunder-8.x-2.49-core.zip && cd html/ && \
     ###
+    pwd && \
+    ###
     echo "Install Thunder CMS" && echo "###" && \
     curl -sS https://getcomposer.org/installer | \
     php -- --install-dir=/usr/bin/ --filename=composer > /dev/null 2>&1 && \
