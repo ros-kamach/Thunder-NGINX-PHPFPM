@@ -1,10 +1,22 @@
 #!/bin/bash
-# Add Enviroment to Progect "CONNECT_TO_DB=yes" to apply script
 
-if [[ "${CONNECT_TO_DB}" == "yes" ]]
+# Add Enviroment to Progect "DRUSH_INSTALL=yes" to Install DRUSH
+if [[ "${DRUSH_INSTALL}" == "yes" ]]
     then
+        echo "Installing DRUSH"
         cd /usr/share/nginx/html/
         composer require drush/drush:master
+    else
+        echo "###"
+        echo  Skip DRUSH installation. Enviroment "DRUSH_INSTALL" is  $DRUSH_INSTALL, must be "yes"
+        echo "###"
+fi
+
+# Add Enviroment to Progect "CONNECT_TO_DB=yes" to Install Site by DRUSH
+if [[ "${CONNECT_TO_DB}" == "yes" ]]
+    then
+        echo "Install site by DRUSH"
+        cd /usr/share/nginx/html/
         vendor/bin/drush -y si \
         --db-url=mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@${MYSQL_HOST}/${MYSQL_DATABASE} \
         --site-name=Example --account-name=admin --account-pass=admin --sites-subdir=default
@@ -22,21 +34,3 @@ if [[ "${CONNECT_TO_DB}" == "yes" ]]
         rm -f settings.php
         echo "###"
 fi
-
-if [[ "${DRUSH_INSTALL}" == "yes" ]]
-    then
-        cd /usr/share/nginx/html/
-        composer require drush/drush:master
-    else
-        echo "###"
-        echo  Skip DRUSH installation. Enviroment "DRUSH_INSTALL" is  $DRUSH_INSTALL, must be "yes"
-        echo "###"
-fi
-
-
-echo PHP_MEMORY_LIMIT=${PHP_MEMORY_LIMIT}
-echo MYSQL_DATABASE=${MYSQL_DATABASE}
-echo MYSQL_USER=${MYSQL_USER}
-echo MYSQL_PASSWORD=${MYSQL_PASSWORD}
-echo MYSQL_PORT=${MYSQL_PORT}
-echo MYSQL_HOST=${MYSQL_HOST}
