@@ -1,6 +1,8 @@
 FROM roskamach/alpine_baseimage:latest
-  
+
 MAINTAINER Rostylav Kamach <ros.kamach@gmail.com>
+
+ENV PHP_MEMORY_LIMIT=256M
 
 COPY ./template/db_connect.sh /
 COPY ./template/settings.php /usr/share/nginx/
