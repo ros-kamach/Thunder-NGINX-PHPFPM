@@ -51,7 +51,7 @@ RUN \
     chown -R nginx:nginx /usr/share/nginx/html && \
     cat ../opcache >> /etc/php/7.2/php.ini && rm ../opcache && \
     ###
-    bash /usr/share/nginx/db_connect.sh
+    bash /usr/share/nginx/db_connect.sh && \
     ###
     echo "Clean cache" && echo "###" && \
     apk del unzip > /dev/null 2>&1 && \
