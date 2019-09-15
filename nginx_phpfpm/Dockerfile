@@ -2,8 +2,6 @@ FROM roskamach/alpine_baseimage:latest
 
 MAINTAINER Rostylav Kamach <ros.kamach@gmail.com>
 
-ENV PHP_MEMORY_LIMIT=256M
-
 COPY ./template/db_connect.sh /
 COPY ./template/settings.php /usr/share/nginx/
 COPY ./template/opcache /usr/share/nginx/
@@ -52,6 +50,8 @@ RUN \
     composer install --no-progress --profile --prefer-dist > /dev/null 2>&1 && \
     chown -R nginx:nginx /usr/share/nginx/html && \
     cat ../opcache >> /etc/php/7.2/php.ini && rm ../opcache && \
+    ###
+    bash /usr/share/nginx/db_connect.sh
     ###
     echo "Clean cache" && echo "###" && \
     apk del unzip > /dev/null 2>&1 && \
