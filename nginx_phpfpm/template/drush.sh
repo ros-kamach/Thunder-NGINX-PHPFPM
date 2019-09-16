@@ -12,7 +12,7 @@ if [[ "${DRUSH_INSTALL}" == "yes" ]]
         echo "###"
 fi
 
-# Add Enviroment to Progect "CONNECT_TO_DB=yes" to Install Site by DRUSH
+# Add Enviroment to Progect "SITE_INSTALL=yes" to Install Site by DRUSH
 if [[ "${SITE_INSTALL}" == "yes" ]]
     then
         echo "Install site by DRUSH"
