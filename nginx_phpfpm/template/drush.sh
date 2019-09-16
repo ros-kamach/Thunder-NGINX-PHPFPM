@@ -20,11 +20,10 @@ if [[ "${SITE_INSTALL}" == "yes" ]]
         cd /usr/share/nginx/html/
         vendor/bin/drush -y si \
         --db-url=mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@${MYSQL_HOST}/${MYSQL_DATABASE} \
-        --site-name=Example --account-name=admin --account-pass=admin --sites-subdir=default
+        --site-name=Thunder --account-name=${SITE_USER} --account-pass=${SITE_PASSWORD} --sites-subdir=default
         chown -R nginx:nginx /usr/share/nginx/html/sites/default
     else
         echo "###"
-        echo  Skip connection to Data_Base. Enviroment "CONNECT_TO_DB" is  $CONNECT_TO_DB, must be "yes"
-        rm -f settings.php
+        echo  Skip connection to Data_Base. Enviroment "SITE_INSTALL" is  $SITE_INSTALL, must be "yes"
         echo "###"
 fi
