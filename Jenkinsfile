@@ -1,22 +1,16 @@
-pipeline {				//indicate the job is written in Declarative Pipeline
-    agent any				//agent specifies where the pipeline will execute. 
-    options {
-        buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
-        timestamps()
-    }
-    stages {
-        stage ("Build_Alpine_Thunder_image") {		//an arbitrary stage name
-            steps {
-                build 'alpine_thunder'	//this is where we specify which job to invoke.
-            }
-        }
-        stage ('Deploy To Production WEB Server'){
-        input{
-                message "Do you want to proceed for production deployment?"
-        }
-            steps {
-                build 'prod_deployment'	//this is where we specify which job to invoke.
-            }
-        }
-    }
-}
+          node('') {
+              stage ('Build_Alpine_Thunder_image') {
+                      openshiftBuild(namespace: '${JENKINS_PROJECT_NAME}', buildConfig: 'thunder-alpine', showBuildLogs: 'true',  waitTime: '3000000')
+              }
+              stage('Approve for Deployment') {
+                  input message: 'Deploy MYQL than Thunder?',
+                  id: 'approval'
+              }
+              stage ('Deploy_MYSQL') {
+                      openshiftDeploy(namespace: '${THUNDER_PROJECT_NAME}', deploymentConfig: 'mysql', waitTime: '3000000')
+              }
+              stage ('Deploy_Thunder') {
+                  openshiftDeploy(namespace: '${THUNDER_PROJECT_NAME}', deploymentConfig: 'thunder-deployment', waitTime: '3000000')
+
+              }
+          }
