@@ -7,6 +7,9 @@ node('') {
         input message: 'Deploy MYQL than Thunder?',
         id: 'approval'
     }
+    stage ('Deploy_MYSQL') {
+        openshiftDeploy(namespace: '${THUNDER_PROJECT_NAME}', deploymentConfig: 'mysql', waitTime: '3000000')
+    }
     stage('Approve for Deployment') {
         input message: 'Deploy MYQL than Thunder?',
         id: 'approval'
