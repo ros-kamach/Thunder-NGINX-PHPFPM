@@ -10,7 +10,7 @@
             )
 
             try{
-                node('nodejs') {
+                node('') {
 
                     stage('Checkout'){
                         checkout scm
