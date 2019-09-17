@@ -5,7 +5,8 @@
                         $class: 'BuildDiscarderProperty',
                         strategy: [$class: 'LogRotator', numToKeepStr: '10']
                     ],
-                      pipelineTriggers([pollSCM('H/5 * * * *')]),      
+                      pipelineTriggers([pollSCM('H/5 * * * *')]),
+                ]
             )
 
             try{
