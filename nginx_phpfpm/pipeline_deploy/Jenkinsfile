@@ -15,9 +15,9 @@ node('') {
     }
 }
 
-    } catch (Exception e) {
-        // Notify
-        echo "send error mail to ros.kamach@gmail.com"
-        mail subject: "Build failed with ${e.message}", to: "ros.kamach@gmail.com", body: "Job failed: ${env.BUILD_URL} \n\n${e.stackTrace}"
-        throw e;
-    }
+} catch (Exception e) {
+    // Notify
+    echo "send error mail to ros.kamach@gmail.com"
+    mail subject: "Build failed with ${e.message}", to: "ros.kamach@gmail.com", body: "Job failed: ${env.BUILD_URL} \n\n${e.stackTrace}"
+    throw e;
+}
