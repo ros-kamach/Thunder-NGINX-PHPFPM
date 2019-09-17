@@ -1,22 +1,29 @@
-          node('') {
+            // define Logrotation and scm Polling
+            properties(
+                [
+                    [
+                        $class: 'BuildDiscarderProperty',
+                        strategy: [$class: 'LogRotator', numToKeepStr: '10']
+                    ],
+                      pipelineTriggers([pollSCM('H/5 * * * *')]),      
                     
-              stage ('Build_Alpine_Thunder_image') {
-                      openshiftBuild(namespace: '${JENKINS_PROJECT_NAME}', buildConfig: 'thunder-alpine', showBuildLogs: 'true',  waitTime: '3000000')
-              }
-              stage('Approve for Deployment') {
-                  input message: 'Deploy MYQL than Thunder?',
-                  id: 'approval'
-              }
-              stage ('Deploy_MYSQL') {
-                      openshiftDeploy(namespace: '${THUNDER_PROJECT_NAME}', deploymentConfig: 'mysql', waitTime: '3000000')
-              }
-              stage ('Deploy_Thunder') {
-                  openshiftDeploy(namespace: '${THUNDER_PROJECT_NAME}', deploymentConfig: 'thunder-deployment', waitTime: '3000000')
+                    ],
+            )
 
-              }
-                    
-          }
-                 } catch (Exception e) {
+            try{
+                node('') {
+
+                    stage('Checkout'){
+                        checkout scm
+                    }
+
+                    // trigger Build on OpenShift
+                    stage('buildOnOpenShift'){
+                        openshiftBuild(buildConfig: 'thunder-alpine', showBuildLogs: 'true')
+                    }
+
+                }
+            } catch (Exception e) {
                 // Notify
                 echo "send error mail to ros.kamach@gmail.com"
                 mail subject: "Build failed with ${e.message}", to: "ros.kamach@gmail.com", body: "Job failed: ${env.BUILD_URL} \n\n${e.stackTrace}"
