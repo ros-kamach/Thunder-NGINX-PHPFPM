@@ -303,7 +303,7 @@ $settings['hash_salt'] = '';
  * After finishing the upgrade, be sure to open this file again and change the
  * TRUE back to a FALSE!
  */
-$settings['update_free_access'] = TRUE;
+$settings['update_free_access'] = UPDATE_FREE_ACCESS;
 
 /**
  * External access proxy settings:
@@ -782,7 +782,7 @@ $databases['default']['default'] = array (
   'username' => 'MYSQL_USER',
   'password' => 'MYSQL_PASSWORD',
   'prefix' => '',
-  'host' => 'MYSQL_PORT',
+  'host' => 'MYSQL_HOST',
   'port' => 'MYSQL_PORT',
   'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
   'driver' => 'mysql',
