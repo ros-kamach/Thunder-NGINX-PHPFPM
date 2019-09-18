@@ -5,7 +5,6 @@
             ]
         )
 
-        try{
             node('') {
 
                 stage('Checkout'){
@@ -18,5 +17,3 @@
                 }
 
             }
-            
-        }
