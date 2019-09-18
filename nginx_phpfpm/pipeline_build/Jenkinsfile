@@ -1,9 +1,9 @@
-properties(
-    [
+properties{
+    {
         [$class: 'BuildDiscarderProperty',strategy: [$class: 'LogRotator', numToKeepStr: '10']],
         pipelineTriggers([pollSCM('H/5 * * * *')]),
-    ]
-)
+    }
+}
 
     node('') {
 
