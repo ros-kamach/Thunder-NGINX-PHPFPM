@@ -1,19 +1,19 @@
-        properties(
-            [
-                [$class: 'BuildDiscarderProperty',strategy: [$class: 'LogRotator', numToKeepStr: '10']],
-                pipelineTriggers([pollSCM('H/5 * * * *')]),
-            ]
-        )
+properties(
+    [
+        [$class: 'BuildDiscarderProperty',strategy: [$class: 'LogRotator', numToKeepStr: '10']],
+        pipelineTriggers([pollSCM('H/5 * * * *')]),
+    ]
+)
 
-            node('') {
+    node('') {
 
-                stage('Checkout'){
-                    checkout scm
-                }
+        stage('Checkout'){
+            checkout scm
+        }
 
-                // trigger Build on OpenShift
-                stage('buildOnOpenShift'){
-                    openshiftBuild(buildConfig: 'thunder-alpine', showBuildLogs: 'true')
-                }
+        // trigger Build on OpenShift
+        stage('buildOnOpenShift'){
+            openshiftBuild(buildConfig: 'thunder-alpine', showBuildLogs: 'true')
+        }
 
-            }
+    }
