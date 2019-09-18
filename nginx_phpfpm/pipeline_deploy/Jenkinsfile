@@ -2,9 +2,7 @@ node {''} {
   stages {
     stage('Thunder_Image_Build') {
         steps {
-            script {
-                openshiftBuild(namespace: '${JENKINS_PROJECT_NAME}', buildConfig: 'thunder-alpine', showBuildLogs: 'true',  waitTime: '3000000')
-            }
+            openshiftBuild(namespace: '${JENKINS_PROJECT_NAME}', buildConfig: 'thunder-alpine', showBuildLogs: 'true',  waitTime: '3000000')
         }
     }
   }
