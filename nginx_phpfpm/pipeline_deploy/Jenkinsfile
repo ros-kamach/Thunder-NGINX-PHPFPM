@@ -7,10 +7,10 @@
             id: 'approval'
         }
         
-        stages ('Deploy_Thunder') {
-            stage {
-                openshiftDeploy(namespace: '${THUNDER_PROJECT_NAME}', deploymentConfig: 'thunder-deployment', waitTime: '3000000')
-                //bash echo "hello world" 
+        stage('Deploy_Thunder') {
+            openshiftDeploy(namespace: '${THUNDER_PROJECT_NAME}', deploymentConfig: 'thunder-deployment', waitTime: '3000000')
+            steps {
+                bash echo "hello world" 
             }
         }
     }
