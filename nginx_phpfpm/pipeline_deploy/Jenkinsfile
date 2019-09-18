@@ -3,7 +3,7 @@ pipeline {
     stages {
       stage('Build_Alpine_Thunder_image') {
         steps {
-            openshiftBuild(namespace: '${JENKINS_PROJECT_NAME}', buildConfig: 'thunder-alpine', showBuildLogs: 'true',  waitTime: '3000000')
+            openshiftBuild(namespace: 'thunder', buildConfig: 'thunder-alpine', showBuildLogs: 'true',  waitTime: '3000000')
           }
         }
       stage('Deploy Thunder') {
