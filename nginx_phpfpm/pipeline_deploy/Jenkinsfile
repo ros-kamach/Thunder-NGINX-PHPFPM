@@ -1,15 +1,18 @@
+pipeline {
+  agent {
+    node {''}
+  }
+  options {
+    timeout(time: 20, unit: 'MINUTES') 
+  }
+  stages {
+    stage('Thunder_Image_Build') {
+        steps {
+            script {
+                openshiftBuild(namespace: '${JENKINS_PROJECT_NAME}', buildConfig: 'thunder-alpine', showBuildLogs: 'true',  waitTime: '3000000')
 
-node('') { 
-    stage ('Thunder_Image_Build') {
-            openshiftBuild(namespace: '${JENKINS_PROJECT_NAME}', buildConfig: 'thunder-alpine', showBuildLogs: 'true',  waitTime: '3000000')
-    }
-    stage('Approve Deployment') {
-        input message: 'Deploy Thunder APP?',id: 'approval'
-    }
-    stege ('Thunder_Deployment') {
-        openshiftDeploy(namespace: '${THUNDER_PROJECT_NAME}', deploymentConfig: 'thunder-deployment', waitTime: '3000000')
-        bash '''#!/bin/bash
-        echo "hello world" 
-        '''
+                }
+            }
+        }
     }
 }
