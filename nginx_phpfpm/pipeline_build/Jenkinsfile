@@ -6,9 +6,9 @@ properties(
 
     node('') {
 
-#        stage('Checkout'){
-#            checkout scm
-#        }
+        stage('Checkout'){
+            checkout scm
+        }
 
         // trigger Build on OpenShift
         stage('Thunder_Image_Build'){
