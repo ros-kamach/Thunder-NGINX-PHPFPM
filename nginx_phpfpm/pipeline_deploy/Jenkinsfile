@@ -1,8 +1,4 @@
 node {''}
-  
-  options {
-    timeout(time: 20, unit: 'MINUTES')
-  
   stages {
     stage('Thunder_Image_Build') {
         steps {
