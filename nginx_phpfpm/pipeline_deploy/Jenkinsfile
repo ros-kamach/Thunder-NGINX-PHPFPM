@@ -3,4 +3,7 @@ node('') {
     stage ('Thunder_Image_Build') {
             openshiftBuild(namespace: '${JENKINS_PROJECT_NAME}', buildConfig: 'thunder-alpine', showBuildLogs: 'true',  waitTime: '3000000')
     }
+    stage('Approve for Deployment') {
+        input message: 'Deploy Thunder APP?',id: 'approval'
+    }
 }
