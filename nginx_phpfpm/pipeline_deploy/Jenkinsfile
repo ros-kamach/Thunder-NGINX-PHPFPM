@@ -10,7 +10,7 @@
         stage('Deploy_Thunder') {
             steps {
                 openshiftDeploy(namespace: '${THUNDER_PROJECT_NAME}', deploymentConfig: 'thunder-deployment', waitTime: '3000000')
-                bash echo "hello world" 
+                //bash echo "hello world" 
             }
         }
     }
