@@ -6,7 +6,7 @@ properties(
 
     node('') {
         stage('Thunder_Image_Build'){
-            openshiftBuild(buildConfig: 'thunder-alpine', showBuildLogs: 'true')
+            openshiftBuild(bldCfg: 'thunder-alpine', showBuildLogs: 'true')
         }
 
     }
