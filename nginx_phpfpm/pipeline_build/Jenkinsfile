@@ -6,12 +6,12 @@ properties(
 
     node('') {
 
-        stage('Checkout'){
-            checkout scm
-        }
+#        stage('Checkout'){
+#            checkout scm
+#        }
 
         // trigger Build on OpenShift
-        stage('buildOnOpenShift'){
+        stage('Thunder_Image_Build'){
             openshiftBuild(buildConfig: 'thunder-alpine', showBuildLogs: 'true')
         }
 
