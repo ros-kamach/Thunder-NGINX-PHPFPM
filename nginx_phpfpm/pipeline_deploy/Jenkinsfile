@@ -11,9 +11,3 @@ node('') {
         openshiftDeploy(namespace: '${THUNDER_PROJECT_NAME}', deploymentConfig: 'thunder-deployment', waitTime: '3000000')
     }
 }
-
-} catch (Exception e) {
-echo "send error mail to ros.kamach@gmail.com"
-mail subject: "Build failed with ${e.message}", to: "ros.kamach@gmail.com", body: "Job failed: ${env.BUILD_URL} \n\n${e.stackTrace}"
-throw e;
-}
