@@ -2,18 +2,10 @@ pipeline {
   agent any
   stages {
     stage('Build') {
-      when {
-        expression {
-          openshift.withCluster() {
-            return !openshift.selector('bc', 'mapit-spring').exists();
-          }
-        }
+        openshiftBuild(namespace: '${JENKINS_PROJECT_NAME}', buildConfig: 'thunder-alpine', showBuildLogs: 'true',  waitTime: '3000000')
       }
       steps {
-        script {
-          openshift.withCluster() {
-            openshift.newApp('redhat-openjdk18-openshift:1.1~https://github.com/siamaksade/mapit-spring.git')
-          }
+        echo 123
         }
       }
     }
