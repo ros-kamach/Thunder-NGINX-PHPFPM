@@ -6,11 +6,10 @@ pipeline {
             openshiftBuild(namespace: '${JENKINS_PROJECT_NAME}', buildConfig: 'thunder-alpine', showBuildLogs: 'true',  waitTime: '3000000')
           }
         }
-      }
       stage('Deploy Thunder') {
         steps {
           sh "echo 123"
         }
       }
     }
-  }
+}
