@@ -1,18 +1,19 @@
 try{
-node('') {
-    stage ('Build_Alpine_Thunder_image') {
-        openshiftBuild(namespace: '${JENKINS_PROJECT_NAME}', buildConfig: 'thunder-alpine', showBuildLogs: 'true',  waitTime: '3000000')
-    }
-    stage('Approve for Deployment') {
-        input message: 'Deploy Thunder APP?',
-        id: 'approval'
-    }
-    
-    stage('Deploy_Thunder') {
-        steps {
-            openshiftDeploy(namespace: '${THUNDER_PROJECT_NAME}', deploymentConfig: 'thunder-deployment', waitTime: '3000000')
-            bash '''#!/bin/bash
-                     echo "hello world" 
+    node('') {
+        stage ('Build_Alpine_Thunder_image') {
+            openshiftBuild(namespace: '${JENKINS_PROJECT_NAME}', buildConfig: 'thunder-alpine', showBuildLogs: 'true',  waitTime: '3000000')
+        }
+        stage('Approve for Deployment') {
+            input message: 'Deploy Thunder APP?',
+            id: 'approval'
+        }
+        
+        stage('Deploy_Thunder') {
+            steps {
+                openshiftDeploy(namespace: '${THUNDER_PROJECT_NAME}', deploymentConfig: 'thunder-deployment', waitTime: '3000000')
+                bash '''#!/bin/bash
+                        echo "hello world" 
+            }
         }
     }
 }
