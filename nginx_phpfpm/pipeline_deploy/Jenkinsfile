@@ -1,18 +1,11 @@
 pipeline {
-  options {
-    timeout(time: 20, unit: 'MINUTES') 
-  }
+  agent {}
+  
   stages {
-    stage('preamble') {
-        steps {
-            script {
-                openshift.withCluster() {
-                    openshift.withProject() {
-                        echo "Using project: ${openshift.project()}"
-                    }
-                }
-            }
-        }
+    stage('Build') {
+      steps{
+        ...
+      }
     }
   }
 }
