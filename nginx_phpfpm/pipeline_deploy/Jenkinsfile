@@ -1,10 +1,20 @@
 pipeline {
-  agent {}
-  
+  agent any
   stages {
     stage('Build') {
-      steps{
-        openshiftBuild(namespace: 'thunder', buildConfig: 'thunder-alpine', showBuildLogs: 'true',  waitTime: '3000000')
+      when {
+        expression {
+          openshift.withCluster() {
+            return !openshift.selector('bc', 'mapit-spring').exists();
+          }
+        }
+      }
+      steps {
+        script {
+          openshift.withCluster() {
+            openshift.newApp('redhat-openjdk18-openshift:1.1~https://github.com/siamaksade/mapit-spring.git')
+          }
+        }
       }
     }
   }
