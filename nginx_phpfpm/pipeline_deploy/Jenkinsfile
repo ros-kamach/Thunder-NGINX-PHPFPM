@@ -7,7 +7,15 @@ node('') {
         input message: 'Deploy Thunder APP?',
         id: 'approval'
     }
-    stage ('Deploy_Thunder') {
-        openshiftDeploy(namespace: '${THUNDER_PROJECT_NAME}', deploymentConfig: 'thunder-deployment', waitTime: '3000000')
+    
+    stage('Deploy_Thunder') {
+        steps {
+            openshiftDeploy(namespace: '${THUNDER_PROJECT_NAME}', deploymentConfig: 'thunder-deployment', waitTime: '3000000')
+        }
+        steps {
+            bash '''#!/bin/bash
+                     echo "hello world" 
+             '''
+        }
     }
 }
