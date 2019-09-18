@@ -1,7 +1,7 @@
 pipeline {
     node('') { 
     stages {
-        stage('Build_Alpine_Thunder_image') {
+        stage {
             steps ('Trigger Build'){
                 openshiftBuild(namespace: '${JENKINS_PROJECT_NAME}', buildConfig: 'thunder-alpine', showBuildLogs: 'true',  waitTime: '3000000')
             }
