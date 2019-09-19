@@ -7,7 +7,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Thunder_Image_Build') {
+        stage('Build_Thunder_Image') {
             steps {
                 script {
                     openshift.withCluster() {
