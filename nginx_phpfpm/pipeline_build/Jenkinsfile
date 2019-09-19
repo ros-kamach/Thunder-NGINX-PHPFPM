@@ -25,9 +25,5 @@ pipeline {
                 openshiftBuild(namespace: '${JENKINS_PROJECT_NAME}', bldCfg: 'thunder-alpine', showBuildLogs: 'true')
             }
         }
-        stage('Approve for Deployment') {
-        input message: 'Deploy Thunder APP?',
-        id: 'approval'
-        }
     }
 }
