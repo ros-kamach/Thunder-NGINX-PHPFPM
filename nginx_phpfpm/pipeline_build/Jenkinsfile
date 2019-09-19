@@ -20,14 +20,11 @@ pipeline {
                                 dir("${WORKSPACE}") {
                                     def commit_id = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
                                     echo "${commit_id}"
-                                    def builder = new com.openshift.jenkins.plugins.pipeline.OpenShiftBuilder("", "ticket-monster", "demo", "", "", "", "", "true", "", "")
                                 }
                             }
                         }
                     }
                 }
-                echo "333" 
-                echo "123"
                 openshiftBuild(bldCfg: 'thunder-alpine', showBuildLogs: 'true')
             }
         }
