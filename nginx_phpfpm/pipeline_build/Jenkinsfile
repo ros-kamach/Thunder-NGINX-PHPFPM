@@ -17,24 +17,15 @@ pipeline {
                                             branches         : [[name: "*/${PS_GIT_REF}"]],
                                             userRemoteConfigs: [[url: "${PS_GIT_URI}"]]
                                 ]);
-                                def builder = new com.openshift.jenkins.plugins.pipeline.OpenShiftBuilder(
-                                                                apiURL, 
-                                                                buildConfig, 
-                                                                project,  
-                                                                authToken, 
-                                                                verbose,  
-                                                                commitID, 
-                                                                buildName, 
-                                                                showBuildLogs,  
-                                                                checkForTriggeredDeployments,  
-                                                                waitTime)
+                                dir("${WORKSPACE}") {
+                                    def commit_id = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
+                                    echo "${commit_id}"
+                                    def builder = new com.openshift.jenkins.plugins.pipeline.OpenShiftBuilder("", "ticket-monster", "demo", "", "", "", "", "true", "", "")
+                                }
                             }
                         }
                     }
                 }
-                /* `make check` returns non-zero on test failures,
-                * using `true` to allow the Pipeline to continue nonetheless
-                */
                 echo "333" 
                 echo "123"
                 openshiftBuild(bldCfg: 'thunder-alpine', showBuildLogs: 'true')
