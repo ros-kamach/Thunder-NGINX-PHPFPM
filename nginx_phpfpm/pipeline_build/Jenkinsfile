@@ -4,7 +4,7 @@ pipeline {
     stages {
         // stage('Thunder_Image_Build') {
         //     steps {
-        stage('Checkout') {
+        steps('Checkout') {
             // TODO: Use the git step when it has implemented specifying refspecs
             // See https://jenkins.io/doc/pipeline/steps/workflow-scm-step/ for CloneOption
             checkout([$class: 'GitSCM', branches: [[name: master]], doGenerateSubmoduleConfigurations: false,
