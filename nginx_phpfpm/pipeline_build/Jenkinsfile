@@ -1,15 +1,15 @@
 pipeline {
     agent any
-
+    
     stages {
-        // stage('Thunder_Image_Build') {
-        //     steps {
-        stage('Checkout') {
+        stage('Initialize') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: master]], doGenerateSubmoduleConfigurations: false,
-                        extensions: [[$class: 'CloneOption', timeout: 10, noTags: true, shallow: false]]
-                                    +[[$class: 'LocalBranch', localBranch: '']],
-                        submoduleCfg: [], userRemoteConfigs: [[refspec: "*/${PS_GIT_REF}", url: "${PS_GIT_URI}"]]])
+                //enable remote triggers
+                script {
+                    properties([pipelineTriggers([pollSCM('')])])
+                }
+                //define scm connection for polling
+                git branch: master, url: "${PS_GIT_URI}"
             }
         }
     }
