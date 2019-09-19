@@ -21,8 +21,8 @@ pipeline {
                                     def commit_id = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
                                     echo "${commit_id}"
                                     def job = Jenkins.instance.getItem("workFlow")
-                                    job.nextBuildNumber = ${commit_id}
-                                    job.saveNextBuildNumber()
+                                    job.currentBuild.number = ${commit_id}
+                                    job.currentBuild.number()
                                 }
                             }
                         }
