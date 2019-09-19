@@ -9,7 +9,7 @@ pipeline {
                     properties([pipelineTriggers([pollSCM('')])])
                 }
                 //define scm connection for polling
-                git branch: alpine_build, url: "${PS_GIT_URI}"
+                git branch: 'alpine_build', url: '"${PS_GIT_URI}"'
             }
         }
     }
