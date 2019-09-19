@@ -2,12 +2,14 @@ pipeline {
     agent any
     stages {
         stage ('Build_Alpine_Thunder_image') {
-            openshiftBuild(namespace: '${JENKINS_PROJECT_NAME}', buildConfig: 'thunder-alpine', showBuildLogs: 'true',  waitTime: '3000000')
+            steps {
+                openshiftBuild(namespace: '${JENKINS_PROJECT_NAME}', buildConfig: 'thunder-alpine', showBuildLogs: 'true',  waitTime: '3000000')
+            }
         }
-        stage('Approve for Deployment') {
-            input message: 'Deploy Thunder APP?',
-            id: 'approval'
-        }
+        // stage('Approve for Deployment') {
+        //     input message: 'Deploy Thunder APP?',
+        //     id: 'approval'
+        // }
         
         stage('Deploy_Thunder') {
             steps {
