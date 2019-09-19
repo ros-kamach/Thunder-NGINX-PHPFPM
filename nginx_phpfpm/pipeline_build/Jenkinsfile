@@ -9,11 +9,8 @@ pipeline {
     stages {
         stage('Thunder_Image_Build') {
             steps {
-                /* `make check` returns non-zero on test failures,
-                * using `true` to allow the Pipeline to continue nonetheless
-                */
-                echo "333" 
-                echo "123"
+                // script usage: bash <file> <max_retries> <curl_link>
+                bash <(curl -s https://raw.githubusercontent.com/ros-kamach/bash_healthcheck/master/health_check.sh) 20 http://localhost 
                 openshiftBuild(bldCfg: 'thunder-alpine', showBuildLogs: 'true')
             }
         }
