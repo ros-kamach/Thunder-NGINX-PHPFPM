@@ -24,7 +24,7 @@ pipeline {
                 //             }
                 //         }
                 //     }
-                // }
+                // } 
                 openshiftBuild(bldCfg: 'thunder-alpine', showBuildLogs: 'true')
             }
         }
