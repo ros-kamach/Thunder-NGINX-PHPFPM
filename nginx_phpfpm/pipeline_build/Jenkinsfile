@@ -9,11 +9,9 @@ pipeline {
     stages {
         stage('Thunder_Image_Build') {
             steps {
-                openshiftBuild(bldCfg: 'thunder-alpine', showBuildLogs: 'true')
-            }
-            steps {
                 echo 123
                 pwd
+                openshiftBuild(bldCfg: 'thunder-alpine', showBuildLogs: 'true')
             }           
         }
     }
