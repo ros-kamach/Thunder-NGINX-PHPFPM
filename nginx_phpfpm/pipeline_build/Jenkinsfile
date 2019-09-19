@@ -9,22 +9,22 @@ pipeline {
     stages {
         stage('Thunder_Image_Build') {
             steps {
-                // script {
-                //     openshift.withCluster() {
-                //         openshift.withCredentials() {
-                //             openshift.withProject() {
-                //                 checkout([$class           : 'GitSCM',
-                //                             branches         : [[name: "*/${PS_GIT_REF}"]],
-                //                             userRemoteConfigs: [[url: "${PS_GIT_URI}"]]
-                //                 ]);
+                script {
+                    openshift.withCluster() {
+                        openshift.withCredentials() {
+                            openshift.withProject() {
+                                checkout([$class           : 'GitSCM',
+                                            branches         : [[name: "*/${PS_GIT_REF}"]],
+                                            userRemoteConfigs: [[url: "${PS_GIT_URI}"]]
+                                ]);
                 //                 dir("${WORKSPACE}") {
                 //                     def commit_id = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
                 //                     echo "${commit_id}"
                 //                 }
-                //             }
-                //         }
-                //     }
-                // } 
+                             }
+                         }
+                     }
+                 } 
                 openshiftBuild(bldCfg: 'thunder-alpine', showBuildLogs: 'true')
             }
         }
