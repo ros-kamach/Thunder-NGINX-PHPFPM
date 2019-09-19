@@ -17,8 +17,7 @@ pipeline {
                 echo "hello world"
                 // def script = libraryResource 'loadtestscript?'
                 script {
-                        sh 'curl -s https://raw.githubusercontent.com/ros-kamach/bash_healthcheck/master/health_check.sh | bash -s -- 20 http://12
-7.0.0.1:80/user/login'
+                        sh 'curl -s https://raw.githubusercontent.com/ros-kamach/bash_healthcheck/master/health_check.sh | bash -s -- 20 http://127.0.0.1:80/user/login'
                 }
             }
         }
