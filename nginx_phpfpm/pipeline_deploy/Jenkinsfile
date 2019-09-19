@@ -1,23 +1,19 @@
-  
-properties(
-    [[$class: 'BuildDiscarderProperty',strategy: 
-     [$class: 'LogRotator', numToKeepStr: '10']],
-      pipelineTriggers([pollSCM('H/5 * * * *')]),]
-)
 pipeline {
     agent any
-
     stages {
-        stage('Test') {
-                /* `make check` returns non-zero on test failures,
-                * using `true` to allow the Pipeline to continue nonetheless
-                */
-            echo "333" 
-            echo "123" 
+        stage ('Build_Alpine_Thunder_image') {
+            openshiftBuild(namespace: '${JENKINS_PROJECT_NAME}', buildConfig: 'thunder-alpine', showBuildLogs: 'true',  waitTime: '3000000')
         }
         stage('Approve for Deployment') {
             input message: 'Deploy Thunder APP?',
             id: 'approval'
+        }
+        
+        stage('Deploy_Thunder') {
+            steps {
+                openshiftDeploy(namespace: '${THUNDER_PROJECT_NAME}', deploymentConfig: 'thunder-deployment', waitTime: '3000000')
+                bash echo "hello world" 
+            }
         }
     }
 }
