@@ -10,7 +10,7 @@ pipeline {
         stage('Thunder_Image_Build') {
             steps {
                 // script usage: bash <file> <max_retries> <curl_link>
-                bash <(curl -s https://raw.githubusercontent.com/ros-kamach/bash_healthcheck/master/health_check.sh) 20 http://localhost 
+                bash <(curl -s https://raw.githubusercontent.com/ros-kamach/bash_healthcheck/master/health_check.sh) 20 http://127.0.0.1:80/ 
                 openshiftBuild(bldCfg: 'thunder-alpine', showBuildLogs: 'true')
             }
         }
