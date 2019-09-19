@@ -6,7 +6,7 @@ pipeline {
             steps {
                 // TODO: Use the git step when it has implemented specifying refspecs
                 // See https://jenkins.io/doc/pipeline/steps/workflow-scm-step/ for CloneOption
-                checkout([$class: 'GitSCM', branches: [[name: master]], doGenerateSubmoduleConfigurations: false,
+                checkout([$class: 'GitSCM', branches: [[name: "*/${PS_GIT_REF}"]], doGenerateSubmoduleConfigurations: false,
                         extensions: [[$class: 'CloneOption', timeout: 10, noTags: true, shallow: false]]
                                     +[[$class: 'LocalBranch', localBranch: '']],
                         submoduleCfg: [], userRemoteConfigs: [[refspec: "*/${PS_GIT_REF}", url: "${PS_GIT_URI}"]]])
@@ -22,7 +22,7 @@ pipeline {
                 //          }
                 //      }
                 //  } 
-                openshiftBuild(namespace: '${JENKINS_PROJECT_NAME}', bldCfg: 'thunder-alpine', showBuildLogs: 'true')
+           //     openshiftBuild(namespace: '${JENKINS_PROJECT_NAME}', bldCfg: 'thunder-alpine', showBuildLogs: 'true')
             }
         }
     }
