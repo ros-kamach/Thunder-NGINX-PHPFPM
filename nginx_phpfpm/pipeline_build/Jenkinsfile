@@ -9,7 +9,7 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: 'master']], doGenerateSubmoduleConfigurations: false,
                         extensions: [[$class: 'CloneOption', timeout: 10, noTags: true, shallow: false]]
                                     +[[$class: 'LocalBranch', localBranch: '']],
-                        submoduleCfg: [], userRemoteConfigs: [[refspec: "*/${PS_GIT_REF}", url: "${PS_GIT_URI}"]]])
+                        submoduleCfg: [], userRemoteConfigs: [[refspec: 'alpine_build', url: "${PS_GIT_URI}"]]])
             }
         }
     }
