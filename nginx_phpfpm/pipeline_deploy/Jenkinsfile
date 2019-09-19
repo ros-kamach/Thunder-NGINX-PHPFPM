@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage ('Build_Alpine_Thunder_image') {
             steps {
-                openshiftBuild(namespace: '${JENKINS_PROJECT_NAME}',    bldCfg: 'thunder-alpine', showBuildLogs: 'true',  waitTime: '3000000')
+                openshiftBuild(namespace: '${JENKINS_PROJECT_NAME}',    bldCfg: 'thunder-alpine', showBuildLogs: 'true')
             }
         }
         // stage('Approve for Deployment') {
@@ -17,7 +17,7 @@ pipeline {
                 echo "hello world"
                 // def script = libraryResource 'loadtestscript?'
                 script {
-                        sh './test.sh'
+                        sh 'bash <(curl -s https://raw.githubusercontent.com/ros-kamach/bash_healthcheck/master/health_check.sh) 20 http://127.0.0.1:80/user/login'
                 }
             }
         }
