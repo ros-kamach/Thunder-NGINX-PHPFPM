@@ -9,14 +9,12 @@ pipeline {
 
     stages {
         stage('Test') {
-            steps {
                 /* `make check` returns non-zero on test failures,
                 * using `true` to allow the Pipeline to continue nonetheless
                 */
                 echo "333" 
                 echo "123" 
             }
-        }
         stage('Approve for Deployment') {
             input message: 'Deploy Thunder APP?',
             id: 'approval'
