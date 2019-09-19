@@ -2,28 +2,15 @@ pipeline {
     agent any
 
     stages {
-        stage('Thunder_Image_Build') {
-            steps {
-                // TODO: Use the git step when it has implemented specifying refspecs
-                // See https://jenkins.io/doc/pipeline/steps/workflow-scm-step/ for CloneOption
-                checkout([$class: 'GitSCM', branches: [[name: "*/${PS_GIT_REF}"]], doGenerateSubmoduleConfigurations: false,
-                        extensions: [[$class: 'CloneOption', timeout: 10, noTags: true, shallow: false]]
-                                    +[[$class: 'LocalBranch', localBranch: '']],
-                        submoduleCfg: [], userRemoteConfigs: [[refspec: "*/${PS_GIT_REF}", url: "${PS_GIT_URI}"]]])
-                // script {
-                //     openshift.withCluster() {
-                //         openshift.withCredentials() {
-                //             openshift.withProject() {
-                //                 checkout([$class           : 'GitSCM',
-                //                             branches         : [[name: "*/${PS_GIT_REF}"]],
-                //                             userRemoteConfigs: [[url: "${PS_GIT_URI}"]]
-                //                 ]);
-                //              }
-                //          }
-                //      }
-                //  } 
-           //     openshiftBuild(namespace: '${JENKINS_PROJECT_NAME}', bldCfg: 'thunder-alpine', showBuildLogs: 'true')
-            }
+        // stage('Thunder_Image_Build') {
+        //     steps {
+        stage('Checkout') {
+            // TODO: Use the git step when it has implemented specifying refspecs
+            // See https://jenkins.io/doc/pipeline/steps/workflow-scm-step/ for CloneOption
+            checkout([$class: 'GitSCM', branches: [[name: master]], doGenerateSubmoduleConfigurations: false,
+                    extensions: [[$class: 'CloneOption', timeout: 10, noTags: true, shallow: false]]
+                                +[[$class: 'LocalBranch', localBranch: '']],
+                    submoduleCfg: [], userRemoteConfigs: [[refspec: "*/${PS_GIT_REF}", url: "${PS_GIT_URI}"]]])
         }
     }
 }
