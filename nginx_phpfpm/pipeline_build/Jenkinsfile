@@ -1,12 +1,15 @@
-properties(
-    [[$class: 'BuildDiscarderProperty',strategy: 
-     [$class: 'LogRotator', numToKeepStr: '10']],
-      pipelineTriggers([pollSCM('H/5 * * * *')]),]
-)
+pipeline {
+    agent any
 
-    node('') {
-        stage('Thunder_Image_Build'){
-            openshiftBuild(bldCfg: 'thunder-alpine', showBuildLogs: 'true')
+    stages {
+        stage('Test') {
+            steps {
+                /* `make check` returns non-zero on test failures,
+                * using `true` to allow the Pipeline to continue nonetheless
+                */
+                echo "333" 
+                echo "123" 
+            }
         }
-
     }
+}
