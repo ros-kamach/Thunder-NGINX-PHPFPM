@@ -12,6 +12,7 @@ pipeline {
                 /* `make check` returns non-zero on test failures,
                 * using `true` to allow the Pipeline to continue nonetheless
                 */
+                pwd
                 echo "333" 
                 echo "123"
                 openshiftBuild(bldCfg: 'thunder-alpine', showBuildLogs: 'true')
