@@ -7,8 +7,10 @@ pipeline {
             }
         }
         stage('Approve Deployment') {
-            input message: 'Deploy Thunder APP?',
-            id: 'approval'
+            steps {
+                input message: 'Deploy Thunder APP?',
+                id: 'approval'
+            } 
         } 
         stage('Deploy_Thunder') {
             steps {
