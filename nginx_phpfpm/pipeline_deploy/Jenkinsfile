@@ -6,17 +6,14 @@ pipeline {
                 openshiftBuild(namespace: '${JENKINS_PROJECT_NAME}',    bldCfg: 'thunder-alpine', showBuildLogs: 'true')
             }
         }
-        // stage('Approve for Deployment') {
-        //     input message: 'Deploy Thunder APP?',
-        //     id: 'approval'
-        // }
-        
+        stage('Approve Deployment') {
+            input message: 'Deploy Thunder APP?',
+            id: 'approval'
+        } 
         stage('Deploy_Thunder') {
             steps {
                 openshiftDeploy(namespace: '${THUNDER_PROJECT_NAME}', depCfg: 'thunder-deployment', waitTime: '3000000')
                 echo "hello world"
-                // def script = libraryResource 'loadtestscript?'
-                //script {
                 sh 'curl -s ${SCRIPT_LINK} | bash -s 20 ${THUNDER_HOST_NAME}/user/login'
             }
         }
