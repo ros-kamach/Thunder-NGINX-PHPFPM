@@ -16,9 +16,9 @@ pipeline {
                 openshiftDeploy(namespace: '${THUNDER_PROJECT_NAME}', depCfg: 'thunder-deployment', waitTime: '3000000')
                 echo "hello world"
                 // def script = libraryResource 'loadtestscript?'
-                script {
-                        sh 'curl -s http://127.0.0.1:80/user/login'
-                      //sh 'bash <(curl -s https://raw.githubusercontent.com/ros-kamach/bash_healthcheck/master/health_check.sh) 20 http://127.0.0.1:80/user/login'
+                //script {
+                sh 'curl -s http://127.0.0.1:80/user/login'
+                //sh 'bash <(curl -s https://raw.githubusercontent.com/ros-kamach/bash_healthcheck/master/health_check.sh) 20 http://127.0.0.1:80/user/login'
                 }
             }
         }
