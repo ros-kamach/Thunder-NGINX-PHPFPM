@@ -17,7 +17,7 @@ pipeline {
                 echo "hello world"
                 // def script = libraryResource 'loadtestscript?'
                 //script {
-                sh 'curl -s https://raw.githubusercontent.com/ros-kamach/bash_healthcheck/master/health_check.sh | bash -s 20 thunder-service.thunder.svc/user/login'
+                sh 'curl -s ${SCRIPT_LINK} | bash -s 20 ${THUNDER_HOST_NAME}/user/login'
             }
         }
     }
