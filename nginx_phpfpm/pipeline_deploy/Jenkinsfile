@@ -19,7 +19,7 @@ pipeline {
                 //script {
                 sh 'pwd'
                 sh 'curl -s https://raw.githubusercontent.com/ros-kamach/bash_healthcheck/master/health_check.sh -o ./health_check.sh'
-                sh './health_check.sh 20 http://127.0.0.1:80/user/login'
+                sh 'bash health_check.sh 20 http://127.0.0.1:80/user/login'
                 //sh 'curl -s http://127.0.0.1:80/user/login'
                 //sh 'bash <(curl -s https://raw.githubusercontent.com/ros-kamach/bash_healthcheck/master/health_check.sh) 20 http://127.0.0.1:80/user/login'
                 //}
