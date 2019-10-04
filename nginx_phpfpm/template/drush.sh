@@ -12,16 +12,15 @@ if [[ "${DRUSH_INSTALL}" == "yes" ]]
         echo "###"
 fi
 
-# Add Enviroment to Progect "ENABLE_METRICS=yes" to Installing Prometheus Exporter
-if [[ "${ENABLE_METRICS}" == "yes" ]]
+# Add Enviroment to Progect "PROMETHEUS_METRICS=yes" for Installing Prometheus Exporter
+if [[ "${PROMETHEUS_METRICS}" == "yes" ]]
     then
         echo "Installing Prometheus Exporter"
         cd /usr/share/nginx/html/
         composer require 'drupal/prometheus_exporter:1.x-dev'
-        vendor/bin/drush en prometheus_exporter
     else
         echo "###"
-        echo  Skip Installing Prometheus Exporter. Enviroment "ENABLE_METRICS" is  $ENABLE_METRICS, must be "yes"
+        echo  Skip Installing Prometheus Exporter. Enviroment "PROMETHEUS_METRICS" is  $PROMETHEUS_METRICS, must be "yes"
         echo "###"
 fi
 
@@ -48,5 +47,19 @@ if [[ "${SITE_INSTALL}" == "yes" ]]
     else
         echo "###"
         echo  Skip Install Site. Enviroment "SITE_INSTALL" is  $SITE_INSTALL, must be "yes"
+        echo "###"
+fi
+
+# Add Enviroment to Progect "ENABLE_METRICS=yes" for enable Prometheus Exporter
+if [[ "${ENABLE_METRICS}" == "yes" ]]
+    then
+        echo "Installing Prometheus Exporter"
+        cd /usr/share/nginx/html/
+        vendor/bin/drush en prometheus_exporter
+        vendor/bin/drush role-add-perm 'anonymous' 'access prometheus metrics'
+  
+    else
+        echo "###"
+        echo  Skip Installing Prometheus Exporter. Enviroment "ENABLE_METRICS" is  $ENABLE_METRICS, must be "yes"
         echo "###"
 fi
