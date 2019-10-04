@@ -24,6 +24,20 @@ if [[ "${PROMETHEUS_METRICS}" == "yes" ]]
         echo "###"
 fi
 
+# Add Enviroment to Progect "ENABLE_METRICS=yes" for enable Prometheus Exporter
+if [[ "${ENABLE_METRICS}" == "yes" ]]
+    then
+        echo "Enable Prometheus Exporter"
+        cd /usr/share/nginx/html/
+        vendor/bin/drush en prometheus_exporter
+        vendor/bin/drush role-add-perm 'anonymous' 'access prometheus metrics'
+  
+    else
+        echo "###"
+        echo  Skip Installing Prometheus Exporter. Enviroment "ENABLE_METRICS" is  $ENABLE_METRICS, must be "yes"
+        echo "###"
+fi
+
 # Add Enviroment to Progect "SITE_INSTALL=yes" to Install Site by DRUSH
 if [[ "${SITE_INSTALL}" == "yes" ]]
     then
@@ -47,19 +61,5 @@ if [[ "${SITE_INSTALL}" == "yes" ]]
     else
         echo "###"
         echo  Skip Install Site. Enviroment "SITE_INSTALL" is  $SITE_INSTALL, must be "yes"
-        echo "###"
-fi
-
-# Add Enviroment to Progect "ENABLE_METRICS=yes" for enable Prometheus Exporter
-if [[ "${ENABLE_METRICS}" == "yes" ]]
-    then
-        echo "Installing Prometheus Exporter"
-        cd /usr/share/nginx/html/
-        vendor/bin/drush en prometheus_exporter
-        vendor/bin/drush role-add-perm 'anonymous' 'access prometheus metrics'
-  
-    else
-        echo "###"
-        echo  Skip Installing Prometheus Exporter. Enviroment "ENABLE_METRICS" is  $ENABLE_METRICS, must be "yes"
         echo "###"
 fi
