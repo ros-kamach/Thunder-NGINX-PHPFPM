@@ -1,7 +1,7 @@
 properties(
     [[$class: 'BuildDiscarderProperty',strategy: 
      [$class: 'LogRotator', numToKeepStr: '10']],
-      pipelineTriggers([pollSCM('H/2 * * * *', ignorePostCommitHooks: true),]
+      pipelineTriggers([pollSCM('H/2 * * * *', ignorePostCommitHooks: true)]),]
 )
 pipeline {
     agent any
