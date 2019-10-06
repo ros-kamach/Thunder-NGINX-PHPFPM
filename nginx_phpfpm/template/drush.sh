@@ -30,6 +30,7 @@ if [[ "${ENABLE_METRICS}" == "yes" ]]
         echo "Enable Prometheus Exporter"
         cd /usr/share/nginx/html/
         vendor/bin/drush en prometheus_exporter
+        sleep 20
         vendor/bin/drush role-add-perm 'anonymous' 'access prometheus metrics'
   
     else
