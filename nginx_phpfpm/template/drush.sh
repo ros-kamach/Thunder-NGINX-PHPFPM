@@ -13,7 +13,7 @@ if [[ "${DRUSH_INSTALL}" == "yes" ]]
 fi
 
 # Add Enviroment to Progect "PROMETHEUS_METRICS=yes" for Installing Prometheus Exporter
-if [[ "${PROMETHEUS_METRICS}" == "yes" ]]
+if [[ "${PROMETHEUS_METRICS_INSTALL}" == "yes" ]]
     then
         echo "Installing Prometheus Exporter"
         cd /usr/share/nginx/html/
