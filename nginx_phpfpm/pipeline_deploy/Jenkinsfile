@@ -31,7 +31,7 @@ pipeline {
         stage('Deploy_Thunder') {
             steps {
                 openshiftDeploy(namespace: '${THUNDER_PROJECT_NAME}', depCfg: 'thunder-deployment', waitTime: '3000000')
-                echo "hello world"
+                echo "Wait for site up"
                 sh 'curl -s ${SCRIPT_LINK} | bash -s 20 ${THUNDER_HOST_NAME}/user/login'
             }
         }
