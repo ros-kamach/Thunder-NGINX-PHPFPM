@@ -20,7 +20,7 @@ if [[ "${PROMETHEUS_METRICS_INSTALL}" == "yes" ]]
         composer require 'drupal/prometheus_exporter:1.x-dev'
     else
         echo "###"
-        echo  Skip Installing Prometheus Exporter. Enviroment "PROMETHEUS_METRICS" is  $PROMETHEUS_METRICS, must be "yes"
+        echo  Skip Installing Prometheus Exporter. Enviroment "PROMETHEUS_METRICS_INSTALL" is  $PROMETHEUS_METRICS_INSTALL, must be "yes"
         echo "###"
 fi
 
