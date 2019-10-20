@@ -3,6 +3,9 @@
 # Add Enviroment to Progect "DRUSH_INSTALL=yes" to Install DRUSH
 if [[ "${DRUSH_INSTALL}" == "yes" ]]
     then
+        echo "Show Conteiner User"
+        whoami
+        echo "###################"
         echo "Installing DRUSH"
         cd /usr/share/nginx/html/
         composer require drush/drush:master
@@ -15,6 +18,9 @@ fi
 # Add Enviroment to Progect "PROMETHEUS_METRICS=yes" for Installing Prometheus Exporter
 if [[ "${PROMETHEUS_METRICS_INSTALL}" == "yes" ]]
     then
+        echo "Show Conteiner User"
+        whoami
+        echo "###################"
         echo "Installing Prometheus Exporter"
         cd /usr/share/nginx/html/
         composer require 'drupal/prometheus_exporter:1.x-dev'
@@ -27,6 +33,9 @@ fi
 # Add Enviroment to Progect "SITE_INSTALL=yes" to Install Site by DRUSH
 if [[ "${SITE_INSTALL}" == "yes" ]]
     then
+        echo "Show Conteiner User"
+        whoami
+        echo "###################"
         apk add mysql-client
         RESULT=`MYSQL_PWD="$MYSQL_PASSWORD" mysql -h $MYSQL_HOST -u $MYSQL_USER -D $MYSQL_DATABASE -e 'SHOW TABLES' | grep -o node | wc -l`
         apk del mysql-clientmc
@@ -52,6 +61,9 @@ fi
 # Add Enviroment to Progect "ENABLE_METRICS=yes" for enable Prometheus Exporter
 if [[ "${ENABLE_METRICS}" == "yes" ]]
     then
+        echo "Show Conteiner User"
+        whoami
+        echo "###################"
         echo "Enable Prometheus Exporter"
         cd /usr/share/nginx/html/
         vendor/bin/drush en prometheus_exporter
