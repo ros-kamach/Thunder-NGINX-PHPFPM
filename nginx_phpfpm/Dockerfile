@@ -11,7 +11,6 @@ WORKDIR /usr/share/nginx/
 RUN \
     echo "Download Thunder" && echo "###" && \
     curl -L https://ftp.drupal.org/files/projects/thunder-8.x-3.3-core.zip -o /usr/share/nginx/thunder-8.x-3.3-core.zip > /dev/null 2>&1 && \
-    curl -L https://ftp.drupal.org/files/projects/thunder-8.x-2.49-core.zip -o /usr/share/nginx/thunder-8.x-2.49-core.zip > /dev/null 2>&1 && \
     echo "Update pachages list" && echo "###" && \
     apk update > /dev/null 2>&1 && apk upgrade > /dev/null 2>&1 && \
     ###
