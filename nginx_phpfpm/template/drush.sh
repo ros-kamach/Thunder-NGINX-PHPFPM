@@ -33,8 +33,9 @@ if [[ "${SITE_INSTALL}" == "yes" ]]
         if [ $RESULT -lt 1 ]
             then
                 echo "Install site by DRUSH"
-                chown -R nginx:nginx /usr/share/nginx/
+#                 chown -R nginx:nginx /usr/share/nginx/
                 mv /usr/share/nginx/default.settings.php /usr/share/nginx/html/sites/default/default.settings.php
+                chown -R nginx:nginx /usr/share/nginx/html/sites/default
                 echo "Default"
                 ls -la /usr/share/nginx/html/sites/default/
                 echo "HTML"
@@ -43,7 +44,6 @@ if [[ "${SITE_INSTALL}" == "yes" ]]
                 vendor/bin/drush -y si standard \
                 --db-url=mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@${MYSQL_HOST}/${MYSQL_DATABASE} \
                 --site-name=Thunder --account-name=${SITE_USER} --account-pass=${SITE_PASSWORD}
-                chown -R nginx:nginx /usr/share/nginx/html/sites/default
             else
                 echo "###"
                 echo  Skip Install . DataBase exist.
