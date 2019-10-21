@@ -27,9 +27,6 @@ fi
 # Add Enviroment to Progect "SITE_INSTALL=yes" to Install Site by DRUSH
 if [[ "${SITE_INSTALL}" == "yes" ]]
     then
-        echo "Show Conteiner User"
-        whoami
-        echo "###################"
         apk add mysql-client
         RESULT=`MYSQL_PWD="$MYSQL_PASSWORD" mysql -h $MYSQL_HOST -u $MYSQL_USER -D $MYSQL_DATABASE -e 'SHOW TABLES' | grep -o node | wc -l`
         apk del mysql-clientmc
@@ -40,7 +37,7 @@ if [[ "${SITE_INSTALL}" == "yes" ]]
                 cd /usr/share/nginx/html/
                 vendor/bin/drush -y si standard \
                 --db-url=mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@${MYSQL_HOST}/${MYSQL_DATABASE} \
-                --site-name=Thunder --account-name=${SITE_USER} --account-pass=${SITE_PASSWORD} --sites-subdir=default
+                --site-name=Thunder --account-name=${SITE_USER} --account-pass=${SITE_PASSWORD}
                 chown -R nginx:nginx /usr/share/nginx/html/sites/default
             else
                 echo "###"
