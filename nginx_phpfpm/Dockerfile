@@ -50,6 +50,7 @@ RUN \
     php -- --install-dir=/usr/bin/ --filename=composer > /dev/null 2>&1 && \
     composer install --no-progress --profile --prefer-dist > /dev/null 2>&1 && \
     chown -R nginx:nginx /usr/share/nginx/html && chown nginx:nginx /usr/share/nginx/default.settings.php && \
+    chmod -R 755 /usr/share/nginx/html && \
     cat ../opcache >> /etc/php/7.2/php.ini && rm ../opcache && \
     ###
     echo "Drush Install and connect (On "yes" veriable)" && echo "###" && \
