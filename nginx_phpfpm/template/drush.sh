@@ -33,7 +33,9 @@ if [[ "${SITE_INSTALL}" == "yes" ]]
         if [ $RESULT -lt 1 ]
             then
                 echo "Install site by DRUSH"
+                chown nginx:nginx /usr/share/nginx/default.settings.php
                 mv /usr/share/nginx/default.settings.php /usr/share/nginx/html/sites/default/default.settings.php
+                ls -la /usr/share/nginx/html/sites/default/
                 cd /usr/share/nginx/html/
                 vendor/bin/drush -y si standard \
                 --db-url=mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@${MYSQL_HOST}/${MYSQL_DATABASE} \
