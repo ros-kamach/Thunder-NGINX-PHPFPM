@@ -35,12 +35,8 @@ if [[ "${SITE_INSTALL}" == "yes" ]]
                 echo "Install site by DRUSH"
                 mv /usr/share/nginx/default.settings.php /usr/share/nginx/html/sites/default/default.settings.php
                 chown -R nginx:nginx /usr/share/nginx/html/sites
-                echo "Default"
-                ls -la /usr/share/nginx/html/sites/default/
-                echo "HTML"
-                ls -la /usr/share/nginx/html
                 cd /usr/share/nginx/html/
-                vendor/bin/drush -y si \
+                vendor/bin/drush -y si standard \
                 --db-url=mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@${MYSQL_HOST}/${MYSQL_DATABASE} \
                 --site-name=Thunder --account-name=${SITE_USER} --account-pass=${SITE_PASSWORD} --sites-subdir=default
                 chown -R nginx:nginx /usr/share/nginx/html/sites
