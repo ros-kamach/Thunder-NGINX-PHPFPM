@@ -40,7 +40,7 @@ if [[ "${SITE_INSTALL}" == "yes" ]]
                 echo "HTML"
                 ls -la /usr/share/nginx/html
                 cd /usr/share/nginx/html/
-                vendor/bin/drush -y si standard \
+                vendor/bin/drush -y si \
                 --db-url=mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@${MYSQL_HOST}/${MYSQL_DATABASE} \
                 --site-name=Thunder --account-name=${SITE_USER} --account-pass=${SITE_PASSWORD} --sites-subdir=default
                 chown -R nginx:nginx /usr/share/nginx/html/sites
