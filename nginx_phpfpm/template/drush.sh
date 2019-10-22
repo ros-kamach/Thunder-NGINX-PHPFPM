@@ -33,7 +33,6 @@ if [[ "${SITE_INSTALL}" == "yes" ]]
         if [ $RESULT -lt 1 ]
             then
                 echo "Install site by DRUSH"
-#                 chown -R nginx:nginx /usr/share/nginx/
                 mv /usr/share/nginx/default.settings.php /usr/share/nginx/html/sites/default/default.settings.php
                 chown -R nginx:nginx /usr/share/nginx/html/sites
                 echo "Default"
