@@ -43,7 +43,7 @@ RUN \
     ###
     echo "Unpacking Thunder CMS Site" && echo "###" && \
     unzip thunder-8.x-3.1-core.zip > /dev/null 2>&1 && \
-    rm -rf html thunder-8.x-3.1/.git && mv thunder-8.x-3.1/ html && rm thunder-8.x-3.1-core.zip && cd html/ && \
+    rm -rf html thunder-8.x-3.1/.git /etc/supervisor/conf.d/supervisord.conf && mv thunder-8.x-3.1/ html && rm thunder-8.x-3.1-core.zip && cd html/ && \
     ###
     echo "Install Thunder CMS" && echo "###" && \
     curl -sS https://getcomposer.org/installer | \
@@ -61,6 +61,7 @@ RUN \
     rm -rf /var/cache/apk/* > /dev/null 2>&1 && \
     composer clear-cache > /dev/null 2>&1
 
+COPY ./template/supervisor.conf /etc/supervisor/conf.d/supervisord.conf
 COPY ./template/default /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
